@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Restaurant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .option-btn {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .menu-container {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .menu-item {
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .menu-img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .order-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #totalPrice {
+            margin-top: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+     <h1>Welcome to our Online Restaurant!</h1>
+    <div class="options">
+        <button class="option-btn" onclick="showMenu('veg')">Veg</button>
+        <button class="option-btn" onclick="showMenu('nonveg')">Non-Veg</button>
+        <button class="option-btn" onclick="showMenu('drinks')">Drinks</button>
+    </div>
+
+    <div class="menu-container" id="vegMenu">
+        <div class="menu-item">
+            <img src="veg_biryani.jpg" class="menu-img" alt="Veg Biryani">
+            <p>Veg Biryani - 200rs</p>
+            <button class="order-btn" onclick="addToTotal(200)">Order</button>
+        </div>
+        <div class="menu-item">
+            <img src="paneer_curry.jpg" class="menu-img" alt="Paneer Curry">
+            <p>Paneer Curry - 180</p>
+            <button class="order-btn" onclick="addToTotal(180)">Order</button>
+        </div>
+    </div>
+
+    <div class="menu-container" id="nonvegMenu">
+        <div class="menu-item">
+            <img src="chicken_biryani.jpg" class="menu-img" alt="Chicken Biryani">
+            <p>Chicken Biryani - 270rs</p>
+            <button class="order-btn" onclick="addToTotal(270)">Order</button>
+        </div>
+        <div class="menu-item">
+            <img src="chicken_manchurian.jpg" class="menu-img" alt="Chicken Manchurian">
+            <p>Chicken Manchurian - 200rs</p>
+            <button class="order-btn" onclick="addToTotal(200)">Order</button>
+        </div>
+    </div>
+
+    <div class="menu-container" id="drinksMenu">
+        <div class="menu-item">
+            <img src="mango_shake.jpg" class="menu-img" alt="Mango Shake">
+            <p>Mango Shake - 100rs</p>
+            <button class="order-btn" onclick="addToTotal(100)">Order</button>
+        </div>
+        <div class="menu-item">
+            <img src="banana_shake.jpg" class="menu-img" alt="Banana Shake">
+            <p>Banana Shake - 80rs</p>
+            <button class="order-btn" onclick="addToTotal(80)">Order</button>
+        </div>
+    </div>
+
+    <div id="totalPrice" style="display: none;">
+        <h2>Total Price: rs-<span id="price">0</span></h2>
+    </div>
+
+    <script>
+        let totalAmount = 0;
+
+        function showMenu(menuType) {
+            const menus = document.getElementsByClassName('menu-container');
+            for (let i = 0; i < menus.length; i++) {
+                menus[i].style.display = 'none';
+            }
+
+            document.getElementById(menuType + 'Menu').style.display = 'flex';
+        }
+
+        function calculateTotal() {
+            const totalPriceElement = document.getElementById('totalPrice');
+            const priceElement = document.getElementById('price');
+            totalPriceElement.style.display = 'block';
+            priceElement.textContent = totalAmount;
+        }
+
+        function addToTotal(price) {
+            totalAmount += price;
+            calculateTotal();
+        }
+    </script>
+</body>
+</html>
